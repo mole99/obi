@@ -70,14 +70,14 @@ module obi_demux #(
   assign sbr_port_rsp_o.r      = mgr_ports_rsp_i[select_q].r;
   assign sbr_port_rsp_o.rvalid = mgr_ports_rsp_i[select_q].rvalid;
 
-  if (ObiCfg.UseRReady) begin : gen_rready
+  /*if (ObiCfg.UseRReady) begin : gen_rready
     assign sbr_port_rready = sbr_port_req_i.rready;
     for (genvar i = 0; i < NumMgrPorts; i++) begin : gen_rready
       assign mgr_ports_req_o[i].rready = sbr_port_req_i.rready;
     end
-  end else begin : gen_no_rready
+  end else begin : gen_no_rready*/
     assign sbr_port_rready = 1'b1;
-  end
+  //end
 
   assign cnt_down = mgr_ports_rsp_i[select_q].rvalid && sbr_port_rready;
 

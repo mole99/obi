@@ -134,9 +134,9 @@ module obi_mux #(
 
   end
 
-  if (MgrPortObiCfg.UseRReady) begin : gen_rready_connect
+  /*if (MgrPortObiCfg.UseRReady) begin : gen_rready_connect
     assign mgr_port_req_o.rready = sbr_ports_req_i[response_id].rready;
-  end
+  end*/
   logic [NumSbrPorts-1:0] sbr_rsp_rvalid;
   sbr_port_r_chan_t [NumSbrPorts-1:0] sbr_rsp_r;
   always_comb begin : proc_sbr_rsp
@@ -153,11 +153,11 @@ module obi_mux #(
     assign sbr_ports_rsp_o[i].rvalid = sbr_rsp_rvalid[i];
   end
 
-  if (MgrPortObiCfg.UseRReady) begin : gen_fifo_pop
+  /*if (MgrPortObiCfg.UseRReady) begin : gen_fifo_pop
     assign fifo_pop = mgr_port_rsp_i.rvalid && mgr_port_req_o.rready;
-  end else begin : gen_fifo_pop
+  end else begin : gen_fifo_pop*/
     assign fifo_pop = mgr_port_rsp_i.rvalid;
-  end
+  //end
 
 endmodule
 

@@ -37,11 +37,11 @@ module obi_err_sbr #(
     obi_rsp_o.rvalid = ~fifo_empty;
   end
 
-  if (ObiCfg.UseRReady) begin : gen_pop_rready
+  /*if (ObiCfg.UseRReady) begin : gen_pop_rready
     assign fifo_pop = obi_rsp_o.rvalid && obi_req_i.rready;
-  end else begin : gen_pop_default
+  end else begin : gen_pop_default*/
     assign fifo_pop = obi_rsp_o.rvalid;
-  end
+  //end
 
   fifo_v3 #(
     .DEPTH        ( ObiCfg.UseRReady ? NumMaxTrans : 1 ),
